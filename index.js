@@ -75,8 +75,11 @@ const bootstrap = async() => {
                         }
                         timelog(`Command executed ${stdout}`);
                     });
-                }
+                };
             });
+        
+        }).catch((err) => {
+            timelog(`Request to bell services failed: ${err?.response?.data ? JSON.stringify(err?.response?.data) : err.message}`);
         })
 
         await new Promise(r => setTimeout(r, 1000));
