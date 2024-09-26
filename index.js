@@ -28,6 +28,14 @@ const bootstrap = async() => {
         });
     });
 
+    exec(`termux-wake-lock`, (error, stdout, stderr) => {
+        if (error) {
+            timelog(`Wake-lobck command Failed: ${error.message}`);
+            return;
+        }
+        timelog(`Wake-lock [UP] ${stdout}`);
+    });
+
     while (true){
         if (!storage.token){
             timelog(`${chalk.cyan('[>]')} ${chalk.blue('Bell-Cli')} key login`);
