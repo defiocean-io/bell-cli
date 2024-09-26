@@ -58,7 +58,7 @@ const bootstrap = async() => {
             user.alerts.forEach((alert) => {
                 if (alert.active && alert.targetMod === 'lesser' && new BigNumber(alert.currentValue).lt(alert.targetValue)){
                     timelog(`${alert.targetSymbol} price: ${alert.currentValue}$ lesser than target ${alert.targetValue}$`);
-                    exec(`termux-toast "${alert.targetSymbol} price: ${alert.currentValue}$ lesser than target ${alert.targetValue}$" && termux-vibrate -d 3000`, (error, stdout, stderr) => {
+                    exec(`termux-vibrate -d 3000`, (error, stdout, stderr) => {
                         if (error) {
                             timelog(`Command Failed: ${error.message}`);
                             return;
@@ -68,7 +68,7 @@ const bootstrap = async() => {
                 }
                 else if (alert.active && alert.targetMod === 'greater' && new BigNumber(alert.currentValue).gt(alert.targetValue)){
                     timelog(`${alert.targetSymbol} price: ${alert.currentValue}$ greater than target ${alert.targetValue}$`);
-                    exec(`termux-toast "${alert.targetSymbol} price: ${alert.currentValue}$ greater than target ${alert.targetValue}$" && termux-vibrate -d 3000`, (error, stdout, stderr) => {
+                    exec(`termux-vibrate -d 3000`, (error, stdout, stderr) => {
                         if (error) {
                             timelog(`Command Failed: ${error.message}`);
                             return;
