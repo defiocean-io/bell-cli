@@ -42,7 +42,7 @@ const bootstrap = async() => {
             prompt.start();
 
             const cliprompt = await prompt.get('cli_key');
-            await axios.get('http://bell.defiocean.io/api/user/me', { params: { token: cliprompt.cli_key } }).then((response) => {
+            await axios.get('https://bell.defiocean.io/api/user/me', { params: { token: cliprompt.cli_key } }).then((response) => {
                 storage.token = cliprompt.cli_key;
 
                 fs.writeFile('storage.json', JSON.stringify(storage), {}, (err) => {
@@ -55,7 +55,7 @@ const bootstrap = async() => {
             continue;
         }
 
-        await axios.get('http://bell.defiocean.io/api/user/me', { params: { token: storage.token }}).then((response) => {
+        await axios.get('https://bell.defiocean.io/api/user/me', { params: { token: storage.token }}).then((response) => {
             if (!logged){
                 logged = true;
                 timelog(`${chalk.green(`Logged as: ${response.data.name}`)}`);
